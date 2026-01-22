@@ -1,0 +1,32 @@
+app:
+  name: spark-delta-fab-lakehouse
+
+paths:
+  raw: data/raw
+  bronze: lakehouse/bronze/fab_telemetry
+  silver: lakehouse/silver/fab_telemetry_clean
+  gold_tool_daily: lakehouse/gold/tool_daily_metrics
+  gold_step_daily: lakehouse/gold/step_daily_metrics
+  checkpoints: lakehouse/checkpoints
+
+input:
+  format: csv
+  header: true
+  inferSchema: true
+
+columns:
+  event_ts: timestamp
+  tool_id: tool_id
+  wafer_id: wafer_id
+  process_step: process_step
+  temperature_c: temperature_c
+  pressure_pa: pressure_pa
+  voltage_v: voltage_v
+  current_a: current_a
+  vibration_level: vibration_level
+  defect_count: defect_count
+  yield_flag: yield_flag
+
+partitioning:
+  column: event_date
+
